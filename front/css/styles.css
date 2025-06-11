@@ -1,0 +1,234 @@
+/* Ajustes para evitar el scroll */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* ¡Esto es lo que evita el scroll! */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom, #1a2a4a, #0d1a33); /* Gradiente azul oscuro para el fondo */
+    color: #e0e0e0; /* Texto principal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100vw;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 1400px; /* Ancho ajustado para que todo quepa mejor y se vea extendido */
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* **Encabezado más lindo** */
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
+    padding-left: 20px; /* Asegura espacio para el título */
+    padding-right: 20px; /* Asegura espacio para el icono */
+}
+
+
+.encabezado h1 {
+    font-size: 3.8em; /* Título un poco más grande */
+    margin: 0;
+    flex-grow: 1;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4); /* Sombra de texto más pronunciada */
+    letter-spacing: 2px; /* Más espacio entre letras */
+}
+
+.icono-ajustes {
+    font-size: 3.2em; /* Icono un poco más grande */
+    cursor: pointer;
+    line-height: 1;
+    color: #b0b0b0; /* Color ligeramente más claro */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icono-ajustes:hover {
+    color: #ffffff;
+    transform: rotate(180deg) scale(1.15); /* Efecto de rotación y zoom más pronunciado */
+}
+
+/* Solo un divisor debajo del título */
+.divisor {
+    border-bottom: 3px solid #444; /* Línea principal gruesa */
+    margin: 0 0 40px 0; /* Espacio debajo */
+    width: 100%; /* Abarca todo el ancho */
+    flex-shrink: 0;
+}
+
+.seccion-jugadores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 80px; /* Espacio horizontal entre las tarjetas */
+    width: 100%;
+    flex-grow: 1;
+    position: relative; /* Necesario para la línea vertical */
+}
+
+/* Raya vertical que divide las dos tarjetas */
+.seccion-jugadores::before {
+    content: '';
+    position: absolute;
+    left: 50%; /* Centra la línea */
+    transform: translateX(-50%); /* Ajusta para que quede exactamente en el centro */
+    height: 70%; /* Altura de la línea REDUCIDA para dejar espacio al VS */
+    width: 2px; /* Grosor de la línea */
+    background-color: #555; /* Color de la línea */
+    z-index: 1; /* Para asegurar que esté por encima del fondo, pero debajo de las tarjetas si se superponen */
+}
+
+.tarjeta-jugador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 45%;
+    max-width: 450px;
+    padding: 25px;
+    background-color: #15203a; /* Un azul oscuro que se integra bien */
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 2;
+}
+
+/* Eliminamos el efecto de hover de la tarjeta y la imagen */
+.tarjeta-jugador:hover {
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.tarjeta-jugador img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 25px;
+    border: 8px solid #007bff; /* Azul brillante para imágenes */
+    box-shadow: 0 0 15px #007bff; /* Brillo azul para la imagen */
+}
+
+.tarjeta-jugador img:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 15px #007bff;
+    transform: none;
+}
+
+.tarjeta-jugador h2 {
+    font-size: 2.5em;
+    margin: 0 0 20px 0;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+.tarjeta-jugador .puntaje {
+    font-size: 5em;
+    font-weight: bold;
+    margin: 0;
+    color: #007bff;
+    text-shadow: 0 0 20px #007bff;
+}
+
+/* **El cuadrado del VS no tenga color** */
+.texto-vs {
+    font-size: 3em;
+    font-weight: bold;
+    color: #ffffff; /* Color gris suave para el VS */
+    position: relative;
+    z-index: 3; /* Asegura que esté por encima de la línea */
+    /* Fondo del mismo color que el body para que "borre" la línea donde pasa */
+    background: #0c1527; /* **Mismo gradiente del body** */
+    padding: 0 10px; /* **Padding horizontal MUY PEQUEÑO para solo "borrar" la línea justo detrás** */
+    border-radius: 0; /* Aseguramos que no haya redondeado para evitar formas extrañas */
+    text-shadow: none; /* Sin sombra de texto */
+    margin: 0; /* Sin márgenes extra */
+    box-shadow: none; /* Sin sombra para que no parezca un elemento separado */
+    border-radius: 15%;
+}
+
+
+.seccion-botones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.boton {
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 10px 0;
+    width: 280px;
+    box-sizing: border-box;
+    border: none;
+    color: #fff;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.boton.mas {
+    background: linear-gradient(45deg, #4CAF50, #66BB6A);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+}
+
+.boton.mas:hover {
+    background: linear-gradient(45deg, #66BB6A, #81C784);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(76, 175, 80, 0.8);
+}
+
+.boton.menos {
+    background: linear-gradient(45deg, #F44336, #EF5350);
+    box-shadow: 0 8px 20px rgba(244, 67, 54, 0.5);
+}
+
+.boton.menos:hover {
+    background: linear-gradient(45deg, #EF5350, #FF7043);
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(244, 67, 54, 0.8);
+}
+
+.estadisticas-juego {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #e0e0e0;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.estadisticas-juego span {
+    margin: 0 25px;
+    letter-spacing: 1px;
+}
+
+     

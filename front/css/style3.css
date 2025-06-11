@@ -1,0 +1,242 @@
+
+/* ====================
+   1. Estilos Globales y Reseteo
+   ==================== */
+html, body {
+    height: 100%; /* Asegura que html y body ocupen todo el viewport */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Previene el scrollbar */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #1a2a4a, #0d1a33); /* Gradiente azul oscuro */
+    color: #ffffff; /* Color de texto principal */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que el body tenga al menos el alto del viewport */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total del elemento */
+}
+
+/* ====================
+   2. Contenedor Principal
+   ==================== */
+.container {
+    width: 90%; /* Ocupa el 90% del ancho disponible */
+    max-width: 450px; /* Ancho máximo para el formulario */
+    padding: 30px;
+    box-sizing: border-box; /* Incluye padding en el ancho/alto */
+    text-align: center; /* Centra el texto */
+
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo semi-transparente oscuro */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); /* Sombra suave */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(5px); /* Soporte para Safari */
+}
+
+/* ====================
+   3. Encabezado (Header)
+   ==================== */
+header {
+    margin-bottom: 40px; /* Espacio debajo del encabezado */
+}
+
+header h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 15px; /* Espacio debajo del título */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Sombra sutil para el título */
+}
+
+.header-line {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff, rgba(255, 255, 255, 0)); /* Línea con gradiente blanco */
+    width: 80%; /* Ancho de la línea */
+    margin: 0 auto 30px auto; /* Centra y espacia la línea */
+}
+
+/* ====================
+   4. Títulos de Formularios (Login/Register)
+   ==================== */
+.login-box h2,
+.register-box h2 { /* Aplica estilos a h2 tanto en la caja de login como en la de registro */
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 30px; /* Espacio debajo del subtítulo */
+}
+
+/* ====================
+   5. Grupos de Input
+   ==================== */
+.input-group {
+    margin-bottom: 25px; /* Espacio entre grupos de input */
+    text-align: left; /* Alinea etiquetas e inputs a la izquierda */
+}
+
+.input-group label {
+    display: block; /* Cada label en su propia línea */
+    margin-bottom: 8px; /* Espacio debajo del label */
+    font-size: 1.1em;
+    font-weight: 400;
+}
+
+.input-group input {
+    width: calc(100% - 22px); /* Ancho total menos padding y bordes (12px padding + 1px border) * 2 */
+    padding: 12px 10px;
+    box-sizing: border-box; /* Incluye padding y borde en el width */
+
+    border: 1px solid rgba(135, 206, 250, 0.4); /* Borde azul claro sutil */
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo gris oscuro transparente */
+    color: #ffffff;
+    font-size: 1em;
+    outline: none; /* Elimina el contorno por defecto */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.input-group input:focus {
+    border-color: #87cefa; /* Borde azul brillante al enfocar */
+    box-shadow: 0 0 8px rgba(135, 206, 250, 0.6); /* Brillo azul al enfocar */
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.6); /* Color del placeholder */
+}
+
+/* ====================
+   6. Botones de Acción
+   ==================== */
+
+/* Botón de Iniciar Sesión (para la página de Login) */
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px; /* Espacio arriba del botón */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano */
+
+    background: linear-gradient(to right, #4CAF50, #66BB6A); /* Gradiente verde */
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.5); /* Sombra verde */
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.btn-login:hover {
+    background: linear-gradient(to right, #66BB6A, #81C784); /* Gradiente verde más claro al pasar el mouse */
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.7); /* Sombra más pronunciada al pasar el mouse */
+}
+
+/* Nuevo Botón de Registro (para la página de Register) */
+.btn-register {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px; /* Espacio arriba del botón */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano */
+
+    background: linear-gradient(to right, #e74c3c, #c0392b); /* Gradiente rojo */
+    color: #ffffff;
+    font-size: 1.2em;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.5); /* Sombra roja */
+    transition: background 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.btn-register:hover {
+    background: linear-gradient(to right, #c0392b, #a52a22); /* Gradiente rojo más oscuro al pasar el mouse */
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.7); /* Sombra más pronunciada al pasar el mouse */
+}
+
+/* ====================
+   7. Enlaces de Navegación
+   ==================== */
+
+/* Enlace a Registro (para la página de Login) */
+.signup-link {
+    margin-top: 30px; /* Espacio arriba del enlace */
+    font-size: 0.95em;
+}
+
+.signup-link a {
+    color: #87cefa; /* Color azul claro para el enlace */
+    text-decoration: none; /* Sin subrayado por defecto */
+    font-weight: 600;
+    transition: color 0.3s ease; /* Transición suave */
+}
+
+.signup-link a:hover {
+    color: #add8e6; /* Azul más claro al pasar el mouse */
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+/* Nuevo Enlace a Login (para la página de Register) */
+.login-link {
+    margin-top: 30px; /* Espacio arriba del enlace */
+    font-size: 0.95em;
+}
+
+.login-link a {
+    color: #87cefa; /* Color azul claro para el enlace */
+    text-decoration: none; /* Sin subrayado por defecto */
+    font-weight: 600;
+    transition: color 0.3s ease; /* Transición suave */
+}
+
+.login-link a:hover {
+    color: #add8e6; /* Azul más claro al pasar el mouse */
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+   
+
+/* Estilos generales para el modal */
+#modal {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    background-color: #15203a;
+    color: #e0e0e0;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 9999;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 500px;
+    width: 85%;
+    height: auto;
+    max-height: 350px;
+}
+
+#modal h2 {
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 1.8em;
+}
+
+#modal p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+#modal button {
+    background: linear-gradient(45deg, #F44336, #EF5350);
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
