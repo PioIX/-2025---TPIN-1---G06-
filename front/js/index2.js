@@ -13,6 +13,8 @@ async function guardarUsuario(datos){
         console.log(result)
         if (result.validar){
             window.location.href = "../html/juego.html";
+        }else{
+            ui.showModal("Error",result.res)
         }
     } catch (error) {
         alert("No se pudo agregar el usuario")
@@ -26,9 +28,10 @@ function crearUsuario() {
         email:ui.getEmail(),
         contraseña:ui.getPassword(),
     }
-    guardarUsuario(datos)
-}
-
-
-
-
+    if (ui.getNombre()=="" || ui.getEmail()=="" || ui.getPassword()==""){
+        ui.showModal("Error","Debes Rellenar todos los campos")
+    }else{
+        guardarUsuario(datos)
+    }
+    
+} 

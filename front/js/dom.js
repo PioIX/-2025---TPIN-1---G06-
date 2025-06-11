@@ -14,14 +14,15 @@ class UserInterface {
 
 
     showModal(title, body) {
-        document.getElementById("modalTitle").textContent = title;
-        document.getElementById("modalBody").textContent = body;
-        document.getElementById("modal").style.display = "block";
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalBody").textContent = body;
+    document.getElementById("modal").style.display = "block";
     }
-    
+
     closeModal() {
         document.getElementById("modal").style.display = "none";
     }
+
     
 }
 const ui = new UserInterface();
