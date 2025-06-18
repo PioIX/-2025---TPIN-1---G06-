@@ -60,6 +60,16 @@ header h1 {
     margin: 0 auto 30px auto; /* Centra y espacia la línea */
 }
 
+/* ====================
+   4. Caja de Iniciar Sesión (main.login-box)
+   ==================== */
+/* Nota: En tu HTML, el main tiene la clase login-box.
+   Si main.login-box no está aplicando los estilos del .container,
+   revisa que no haya una superposición de clases o considera si .container
+   es suficiente para envolver todo y no necesitas login-box para la caja principal.
+   Basado en tu HTML, `.container` es la caja principal y `main.login-box` es el contenido del formulario.
+   Mantendré `main.login-box` para los estilos específicos del contenido del formulario.
+*/
 
 .login-box h2 {
     font-size: 1.8em;
@@ -105,11 +115,8 @@ header h1 {
     color: rgba(255, 255, 255, 0.6); /* Color del placeholder */
 }
 
-
- 
-
 /* ====================
-   7. Botón de Iniciar Sesión
+   6. Botón de Iniciar Sesión
    ==================== */
 .btn-login {
     width: 100%;
@@ -133,7 +140,7 @@ header h1 {
 }
 
 /* ====================
-   8. Enlace de Registro
+   7. Enlace de Registro
    ==================== */
 .signup-link {
     margin-top: 30px; /* Espacio arriba del enlace */
@@ -150,48 +157,4 @@ header h1 {
 .signup-link a:hover {
     color: #add8e6; /* Azul más claro al pasar el mouse */
     text-decoration: underline; /* Subrayado al pasar el mouse */
-}
-
-
-
-/* Estilos generales para el modal */
-#modal {
-    display: none;
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -30%);
-    background-color: #15203a;
-    color: #e0e0e0;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    z-index: 9999;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-width: 500px;
-    width: 85%;
-    height: auto;
-    max-height: 350px;
-}
-
-#modal h2 {
-    margin-bottom: 15px;
-    color: #ffffff;
-    font-size: 1.8em;
-}
-
-#modal p {
-    margin-bottom: 20px;
-    font-size: 1.1em;
-}
-
-#modal button {
-    background: linear-gradient(45deg, #F44336, #EF5350);
-    color: white;
-    padding: 10px 25px;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
-    cursor: pointer;
 }

@@ -1,5 +1,11 @@
+async function ingresar(datosLogin) {
 
-
+<<<<<<< Updated upstream
+    try {
+        
+        const response = await fetch('/http://localhost:4000/usuarios', {
+=======
+/*
 function ingresar() {
     let email = ui.getEmail()
     let password = ui.getPassword()
@@ -21,44 +27,76 @@ function ingresar() {
         ui.showModal("El usuario está mal puesto", "Intente nuevamente")
 
     }
-}
-
-function crearRegistro() {
-    let datosRegistro={
-        nombre:ui.getNombre(),
-        email:ui.getEmail(),
-        contraseña:ui.getPassword()
-    }
-    guardar(datosRegistro)
-}
+}*/
 
 
+async function ingresar(datosLogin) {
 
-async function register(datosRegistro){
     try {
-        response = await fetch(`http://localhost:4000/jugadoresRegistro`,{
-            method:"POST", //GET, POST, PUT o DELETE
+        
+        const response = await fetch(`http://localhost:4000/usuarios`, {
+>>>>>>> Stashed changes
+            method: 'POST', 
             headers: {
-                "Content-Type": "application/json",
-              },
-            body: JSON.stringify(datosRegistro) //JSON.stringify me convierte de objeto a JSON
-        })
+                'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify(datosLogin), 
+        });
         console.log(response)
-        let result = await response.json()
-        console.log(result)
-        if(result.validar){
-            ui.showModal("Registro Exitoso", result.res)
-            window.location.href = "../html/juego.html";
-        }else{
-            ui.showModal("Error", result.res)
-        }
-        ui.showModal(result.res)
+        const result = await response.json();
+
+<<<<<<< Updated upstream
+        if (result.res > 0) {
+
+            userId = result.userId;
+            window.location.href = "../html/juego.html"; 
+        } else if (result.res === 0) {
+=======
+        if (result.res == ui.getPassword()) {
+
+            userId = result.userId;
+            window.location.href = "../html/juego.html"; 
+        } else{
+>>>>>>> Stashed changes
+            
+            ui.showModal("La contraseña o el mail es incorrecta", "Intente nuevamente");
+        } 
+
     } catch (error) {
-        alert("No se pudo crear el usuario")
-        console.log(error)
+        
+<<<<<<< Updated upstream
+        console.error('Error al hacer la petición:', error);
+=======
+        console.log(error);
+>>>>>>> Stashed changes
+        
     }
 }
 
 
 
+function crearLogin(){
+    let datosLogin={
+        email: ui.getEmail(),
+<<<<<<< Updated upstream
+        password: ui.getPassword()
+    }
+    enviarDatosLogin(datosLogin)
+} 
+=======
+        contraseña: ui.getPassword()
+    }
+    if (ui.getEmail()=="" || ui.getPassword()==""){
+        ui.showModal("Error","Debes Rellenar todos los campos")
+    }else{
+        ingresar(datosLogin)
+    }
+} 
+
+
+
+
+
+
+>>>>>>> Stashed changes
 
