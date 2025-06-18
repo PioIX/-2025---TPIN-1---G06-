@@ -20,7 +20,7 @@ app.get('/', function(req, res){
 /**
  * req = request. en este objeto voy a tener todo lo que reciba del cliente
  * res = response. Voy a responderle al cliente
- */
+/*
 app.get('/clubes', async function(req,res){
     let respuesta;
     if (req.query.id != undefined) {
@@ -30,7 +30,7 @@ app.get('/clubes', async function(req,res){
     }    
     res.send(respuesta);
 })
-
+*/
 
 app.post('/clubes', async function(req,res) {
     console.log(req.body) //Los pedidos post reciben los datos del req.body
@@ -45,6 +45,36 @@ app.post('/clubes', async function(req,res) {
         res.send({res: "Club ya existe"})
     }
 })
+
+/*
+app.post('/usuarios', async function(req,res) {
+    console.log(req.body) 
+    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE email='${req.body.email}'`)
+    if (respuesta.length == 0) {
+        if (respuesta[0].contraseña === req.body.contraseña){
+            res.send({res: 1})
+        } else{
+            res.send({res: 0})
+        }
+       
+        
+    } else {
+        res.send({res: "Usuario ya existe"})
+    }
+})*/
+
+app.post('/usuarios', async function(req, res) {
+    console.log(req.body);
+
+    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE correo='${req.body.email}'`);
+
+    if (respuesta.length > 0) {  
+        res.send({res: respuesta[0].contraseña})
+    }else {
+        res.send({res: "Usuario no encontrado"});     
+    }
+});
+
 
 
 app.put('/clubes', function(req,res) {
