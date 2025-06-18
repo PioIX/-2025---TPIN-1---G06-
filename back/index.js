@@ -21,16 +21,15 @@ app.get('/', function(req, res){
  * req = request. en este objeto voy a tener todo lo que reciba del cliente
  * res = response. Voy a responderle al cliente
  */
-app.get('/clubes', async function(req,res){
+app.get('/Jugadores', async function(req,res){
     let respuesta;
     if (req.query.id != undefined) {
-        respuesta = await realizarQuery(`SELECT * FROM Clubes WHERE id=${req.query.id}`)
+        respuesta = await realizarQuery(`SELECT * FROM Jugadores WHERE id=${req.query.id}`)
     } else {
-        respuesta = await realizarQuery("SELECT * FROM Clubes");
+        respuesta = await realizarQuery("SELECT * FROM Jugadores");
     }    
     res.send(respuesta);
 })
-
 
 app.post('/jugadoresRegistro', async function(req,res) {
     console.log(req.body) //Los pedidos post reciben los datos del req.body
