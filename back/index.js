@@ -21,16 +21,15 @@ app.get('/', function(req, res){
  * req = request. en este objeto voy a tener todo lo que reciba del cliente
  * res = response. Voy a responderle al cliente
  */
-app.get('/clubes', async function(req,res){
+app.get('/Jugadores', async function(req,res){
     let respuesta;
     if (req.query.id != undefined) {
-        respuesta = await realizarQuery(`SELECT * FROM Clubes WHERE id=${req.query.id}`)
+        respuesta = await realizarQuery(`SELECT * FROM Jugadores WHERE id=${req.query.id}`)
     } else {
-        respuesta = await realizarQuery("SELECT * FROM Clubes");
+        respuesta = await realizarQuery("SELECT * FROM Jugadores");
     }    
     res.send(respuesta);
 })
-
 
 app.post('/jugadoresRegistro', async function(req,res) {
     console.log(req.body) //Los pedidos post reciben los datos del req.body
@@ -47,21 +46,36 @@ app.post('/jugadoresRegistro', async function(req,res) {
 })
 
 
-app.put('/clubes', function(req,res) {
+app.put('/Jugadores', function(req,res) {
     console.log(req.body)
     realizarQuery(`
-    UPDATE  Clubes
-    SET  titulos  =  ${req.body.titulos}
-    WHERE  id=${req.body.id}`)
-    res.send({res:"Club modificado"})
+    UPDATE  Jugadores
+    SET  goles  =  ${req.body.goles}
+    WHERE  id_jugador=${req.body.id}`)
+    res.send({res:"Jugador modificado"})
 })
 
 
+app.delete('/Jugadores', async function(req, res) {
+    console.log(req.body);
+    // Eliminar primero los jugadores asociados
+    await realizarQuery(`DELETE FROM Jugadores WHERE id_jugador=${req.body.id}`);
+    res.send({ res: "Jugador borrado" });
+});
 
-app.delete('/estadios', function(req,res) {
-    console.log(req.body)
-    realizarQuery(`DELETE FROM Estadios WHERE id=${req.body.id}`)
-    res.send({res:"Estadio borrado"})
+app.post('/Jugadores', async function(req,res) {
+    console.log(req.body) //Los pedidos post reciben los datos del req.body
+    let respuesta = await realizarQuery(`SELECT * FROM Jugadores WHERE nombre='${req.body.nombre}'`)
+    if (respuesta.length == 0){
+        realizarQuery(`
+        INSERT INTO Jugadores (nombre,goles,img) VALUES
+            ("${req.body.nombre}",${req.body.goles},"${req.body.img}");
+        `)
+        res.send({res:"Jugador agregado"})
+    }else {
+        res.send({res:"El jugador ya existe"})
+    }
+
 })
 
 //Pongo el servidor a escuchar
