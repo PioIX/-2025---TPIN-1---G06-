@@ -32,17 +32,17 @@ app.get('/clubes', async function(req,res){
 })
 
 
-app.post('/jugadoresRegistro', async function(req,res) {
+app.post('/clubes', async function(req,res) {
     console.log(req.body) //Los pedidos post reciben los datos del req.body
-    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE correo='${req.body.email}'`)
+    let respuesta = await realizarQuery(`SELECT * FROM Clubes WHERE nombre='${req.body.nombre}'`)
     if (respuesta.length == 0) {
         realizarQuery(`
-        INSERT INTO Usuarios (nombre,correo,contraseña) VALUES
-            ("${req.body.nombre}","${req.body.email}","${req.body.contraseña}");
+        INSERT INTO Clubes (nombre,web,titulos,clasico) VALUES
+            ("${req.body.nombre}","${req.body.web}","${req.body.titulos}","${req.body.clasico}");
         `)
-        res.send({res: "Usuario agregado", validar:true})
+        res.send({res: "Club agregado"})
     } else {
-        res.send({res: "Usuario con este mail ya existe", validar:false})
+        res.send({res: "Club ya existe"})
     }
 })
 
@@ -64,7 +64,41 @@ app.delete('/estadios', function(req,res) {
     res.send({res:"Estadio borrado"})
 })
 
+/*let idlog = 0
+function login(email, password) {
+    for (let i = 0; i < users.length; i++) {
+        if (users[i].email == email) {
+            if (users[i].password == password) {
+                return users[i].id
+            }
+            else {
+                return 0
+            }
+        }
+
+    }
+    return -1
+}*/ 
+
+
+app.post('/usuarios', async function(req,res) {
+    console.log(req.body) 
+    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE email='${req.body.email}'`)
+    if (respuesta.length == 0) {
+        if (respuesta[0].contraseña === req.body.contraseña){
+            res.send({res: 1})
+        } else{
+            res.send({res: 0})
+        }
+       
+        
+    } else {
+        res.send({res: "Usuario ya existe"})
+    }
+})
+
 //Pongo el servidor a escuchar
 app.listen(port, function(){
     console.log(`Server running in http://localhost:${port}`);
 });
+
