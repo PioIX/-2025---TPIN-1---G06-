@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            Tabla con Datos
+        </h1>
+    </header>
+    <main>
+        <table id="tabla">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Web</th>
+                <th>Titulos</th>
+                <th>Clasico</th>
+            </tr>
+        </table>
+        <h2>Agregar Club</h2>
+        <input id="ingresoNombre" placeholder="Ingrese el nombre">
+        <input id="ingresoWeb" placeholder="Ingrese el web">
+        <input id="ingresoTitulos" placeholder="Ingrese el titulo" type="number">
+        <input id="ingresoClasico" placeholder="Ingrese el clasico">
+        <button onclick="crear()">Agregar Club</button>
+        <select id="select">
+        </select>
+        <button onclick="borrar()">Borrar Club</button>
+        <select id="select2">
+        </select>
+        <input id="ingresoTitulosMod" placeholder="Ingrese la cantidad modificada de titulos">
+        <button onclick="modificar()">Modificar Titulos</button>
+    </main>
+    <script src="index.js"></script>
+    <script src="dom.js"></script>
+</body>
+
+</html>

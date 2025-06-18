@@ -22,24 +22,24 @@
             <form id="form-jugador">
                 <div class="input-group">
                     <label for="nombre">Nombre del Jugador</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Ingresa el nombre del jugador">
+                    <input type="text" id="nombreAgregar" name="nombre" placeholder="Ingresa el nombre del jugador">
                 </div>
                 <div class="input-group">
                     <label for="goles">Goles</label>
-                    <input type="number" id="goles" name="goles" placeholder="Ingresa la cantidad de goles">
+                    <input type="number" id="golesAgregar" name="goles" placeholder="Ingresa la cantidad de goles">
                 </div>
                 <div class="input-group">
                     <label for="imagen">Link de Imagen</label>
-                    <input type="text" id="imagen" name="imagen" placeholder="Ingresa el link de la imagen">
+                    <input type="text" id="imagenAgregar" name="imagen" placeholder="Ingresa el link de la imagen">
                 </div>
-                <button type="button" class="btn-register" onclick="agregarJugador()">Agregar Jugador</button>
+                <button type="button" class="btn-register" onclick="crear()">Agregar Jugador</button>
                 <div class="input-group">
                     <label for="select-jugador">Selecciona un jugador</label>
                     <select id="select1">
                         <!-- Los jugadores se cargarán aquí dinámicamente -->
                     </select>
-                    <input type="text" id="goles2" name="goles2" placeholder="Ingresa los goles">
-                    <button type="button" class="btn-register" onclick="editarJugador()">Editar Jugador</button>
+                    <input type="text" id="ingresoJugadoresMod" name="goles2" placeholder="Ingresa los goles">
+                    <button type="button" class="btn-register" onclick="modificar()">Editar Jugador</button>
                 </div>
             </form>
             <h3>Borrar Jugador</h3>
@@ -48,7 +48,7 @@
                 <select id="select2">
                     <!-- Los jugadores se cargarán aquí dinámicamente -->
                 </select>
-                <button type="button" class="btn-register" onclick="borrarJugador()">Borrar Jugador</button>
+                <button type="button" class="btn-register" onclick="borrar()">Borrar Jugador</button>
             </div>
 
             <div id="modal">
