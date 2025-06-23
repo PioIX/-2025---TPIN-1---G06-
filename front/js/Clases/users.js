@@ -5,14 +5,14 @@ class User{
      * 
      * @param {str} name 
      * @param {str} email 
-     * @param {str} contraseña
+     * @param {str} password
      */
     constructor(name,email,password){
         this.id = userId;
         userId++;
         this.name = name;
         this.email=email;
-        this.password = contraseña;
+        this.password = password;
         this.record = 0
     }
 }
