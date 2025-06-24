@@ -29,19 +29,17 @@ app.get('/Jugadores', async function(req,res){
 })
 
 
-
 app.post('/jugadoresRegistro', async function(req,res) {
-
     console.log(req.body) //Los pedidos post reciben los datos del req.body
-    let respuesta = await realizarQuery(`SELECT * FROM Clubes WHERE nombre='${req.body.nombre}'`)
+    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE correo='${req.body.email}'`)
     if (respuesta.length == 0) {
         realizarQuery(`
-        INSERT INTO Clubes (nombre,web,titulos,clasico) VALUES
-            ("${req.body.nombre}","${req.body.web}","${req.body.titulos}","${req.body.clasico}");
+        INSERT INTO Usuarios (nombre,correo,contraseña) VALUES
+            ("${req.body.nombre}","${req.body.email}","${req.body.contraseña}");
         `)
-        res.send({res: "Club agregado"})
+        res.send({res: "Usuario agregado", validar:true})
     } else {
-        res.send({res: "Club ya existe"})
+        res.send({res: "Usuario con este mail ya existe", validar:false})
     }
 })
 

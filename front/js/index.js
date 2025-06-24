@@ -1,6 +1,6 @@
 async function ingresar(datosLogin) {
     try {
-        const response = await fetch('/http://localhost:4000/usuarios', {
+        const response = await fetch('http://localhost:4000/usuarios', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json', 
