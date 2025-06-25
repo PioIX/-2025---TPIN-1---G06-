@@ -28,6 +28,13 @@ app.get('/Jugadores', async function(req,res){
     res.send(respuesta);
 })
 
+app.get('/JugadoresImg', async function(req,res){
+
+    let respuesta;
+    respuesta = await realizarQuery("SELECT * FROM Jugadores")   
+    res.send(respuesta);
+})
+
 
 app.post('/jugadoresRegistro', async function(req,res) {
     console.log(req.body) //Los pedidos post reciben los datos del req.body
