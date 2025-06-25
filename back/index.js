@@ -48,8 +48,11 @@ app.post('/usuarios', async function(req, res) {
 
     let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE correo='${req.body.email}'`);
 
-    if (respuesta.length > 0) {  
-        res.send({res: respuesta[0].contraseña})
+    if (respuesta.length > 0) {
+        res.send({res: respuesta[0].contraseña,
+                esAdmin: respuesta[0].es_admin
+        })
+             
     }else {
         res.send({res: "Usuario no encontrado"});     
     }
