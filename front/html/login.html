@@ -23,32 +23,26 @@
             <form>
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="text" id="correo" name="correo" placeholder="Ingresa tu mail">
+                    <input type="text" id="email" name="email" placeholder="Ingresa tu mail">
                 </div>
                 <div class="input-group">
                     <label for="contrasena">Contraseña</label>
-                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña">
+                    <input type="password" id="password" name="contrasena" placeholder="Ingresa tu contraseña">
                 </div>
                 <button type="button" class="btn-login" onclick="crearLogin()">Iniciar Sesión</button>
             </form>
             <p class="signup-link">¿No tienes cuenta? <a href="../html/regiser.html">REGISTRATE AQUÍ</a></p>
+            <div id="modal">
+                <h2 id="modalTitle">Título</h2>
+                <p id="modalBody">Mensaje</p>
+                <button onclick="ui.closeModal()">Cerrar</button>
+            </div>
+
         </main>
-        <div id="modal" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -30%);
-    background-color: #15203a; color: #e0e0e0; padding: 20px; border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); text-align: center; z-index: 9999;
-    border: 1px solid rgba(255, 255, 255, 0.1); max-width: 500px; width: 85%; height: auto; max-height: 350px;">
-    <h2 id="modalTitle" style="margin-bottom: 15px; color: #ffffff; font-size: 1.8em;">Título</h2>
-    <p id="modalBody" style="margin-bottom: 20px; font-size: 1.1em;">Mensaje</p>
-    <button onclick="document.getElementById('modal').style.display='none'" 
-        style="background: linear-gradient(45deg, #F44336, #EF5350); color: white;
-        padding: 10px 25px; border: none; border-radius: 20px; font-weight: bold; cursor: pointer;">
-        Cerrar
-    </button>
-</div>
-    </div>
-    <script src="../js/Clases/users.js"></script>
-    <script src="../js/dom.js"></script>
-    <script src="../js/index.js"></script>
+
+        <script src="../js/Clases/users.js"></script>
+        <script src="../js/dom.js"></script>
+        <script src="../js/index.js"></script>
 </body>
 
 </html>

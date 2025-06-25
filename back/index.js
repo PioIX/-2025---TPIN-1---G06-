@@ -17,11 +17,6 @@ app.get('/', function(req, res){
     });
 });
 
-/**
- * req = request. en este objeto voy a tener todo lo que reciba del cliente
- * res = response. Voy a responderle al cliente
-
- */
 app.get('/Jugadores', async function(req,res){
 
     let respuesta;
@@ -32,40 +27,21 @@ app.get('/Jugadores', async function(req,res){
     }    
     res.send(respuesta);
 })
-*/
 
 
 app.post('/jugadoresRegistro', async function(req,res) {
-
     console.log(req.body) //Los pedidos post reciben los datos del req.body
-    let respuesta = await realizarQuery(`SELECT * FROM Clubes WHERE nombre='${req.body.nombre}'`)
+    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE correo='${req.body.email}'`)
     if (respuesta.length == 0) {
         realizarQuery(`
-        INSERT INTO Clubes (nombre,web,titulos,clasico) VALUES
-            ("${req.body.nombre}","${req.body.web}","${req.body.titulos}","${req.body.clasico}");
+        INSERT INTO Usuarios (nombre,correo,contraseña) VALUES
+            ("${req.body.nombre}","${req.body.email}","${req.body.contraseña}");
         `)
-        res.send({res: "Club agregado"})
+        res.send({res: "Usuario agregado", validar:true})
     } else {
-        res.send({res: "Club ya existe"})
+        res.send({res: "Usuario con este mail ya existe", validar:false})
     }
 })
-
-/*
-app.post('/usuarios', async function(req,res) {
-    console.log(req.body) 
-    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE email='${req.body.email}'`)
-    if (respuesta.length == 0) {
-        if (respuesta[0].contraseña === req.body.contraseña){
-            res.send({res: 1})
-        } else{
-            res.send({res: 0})
-        }
-       
-        
-    } else {
-        res.send({res: "Usuario ya existe"})
-    }
-})*/
 
 app.post('/usuarios', async function(req, res) {
     console.log(req.body);
@@ -114,39 +90,6 @@ app.post('/Jugadores', async function(req,res) {
         res.send({res:"El jugador ya existe"})
     }
 
-})
-
-/*let idlog = 0
-function login(email, password) {
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].email == email) {
-            if (users[i].password == password) {
-                return users[i].id
-            }
-            else {
-                return 0
-            }
-        }
-
-    }
-    return -1
-}*/ 
-
-
-app.post('/usuarios', async function(req,res) {
-    console.log(req.body) 
-    let respuesta = await realizarQuery(`SELECT * FROM Usuarios WHERE email='${req.body.email}'`)
-    if (respuesta.length == 0) {
-        if (respuesta[0].contraseña === req.body.contraseña){
-            res.send({res: 1})
-        } else{
-            res.send({res: 0})
-        }
-       
-        
-    } else {
-        res.send({res: "Usuario ya existe"})
-    }
 })
 
 //Pongo el servidor a escuchar
