@@ -46,6 +46,7 @@ async function ingresar(datosLogin) {
         const result = await response.json();
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if (result.res > 0) {
 
             userId = result.userId;
@@ -59,8 +60,20 @@ async function ingresar(datosLogin) {
         } else{
 >>>>>>> Stashed changes
             
+=======
+        if (result.res == ui.getPassword()) {
+            if(result.esAdmin==1)
+                userId = result.userId;
+                window.location.href = "../html/admin.html";
+        }   else if(result.esAdmin == 0){
+                userId = result.userId;
+                window.location.href = "../html/juego.html";
+        }else{       
+>>>>>>> Stashed changes
             ui.showModal("La contraseña o el mail es incorrecta", "Intente nuevamente");
         } 
+
+        
 
     } catch (error) {
         
