@@ -12,31 +12,31 @@
     <div class="contenedor">
         <div class="encabezado">
             <h1>Goal Clash</h1>
-            <div class="icono-ajustes">&#x21BB;</div>
+            <a class="icono-ajustes" href="login.html" style="text-decoration: none;">&#x21BB;</a>
         </div>
         <div class="divisor"></div>
         <div class="seccion-jugadores">
-            <div class="tarjeta-jugador"> <img
-                    src=""
-                    alt="jugador1">
+            <div class="tarjeta-jugador"> <img src="" alt="jugador1" id="imgJugador1">
                 <h2 id="jugador1"></h2>
-                <p class="puntaje">861</p>
+                <p class="puntaje" id="goles"></p>
             </div>
             <div class="texto-vs">VS</div>
-            <div class="tarjeta-jugador"> <img src="" alt="jugador2">
+            <div class="tarjeta-jugador"> <img src="" alt="jugador2" id="imgJugador2">
                 <h2 id="jugador2"></h2>
-                <p class="puntaje">???</p>
+                <p class="puntaje2" id="goles2">???</p>
             </div>
         </div>
 
-        <div class="seccion-botones"> <button class="boton mas">Más</button>
-            <button class="boton menos">Menos</button>
-        </div>
+        <div class="seccion-botones">
+            <button class="boton mas" onclick="funcionMas()">Más</button>
+            <button class="boton menos" onclick="funcionMenos()">Menos</button>
+          </div>
+          
 
-        <div class="estadisticas-juego"> <span>RÉCORD: 20</span>
-            <span>PUNTAJE: 2</span>
+        <div class="estadisticas-juego"> <span>RÉCORD:<span id="record"></span> </span>
+            <span>PUNTAJE:<span id="puntaje"></span></span>
         </div>
     </div>
 </body>
-
+<script src="../js/index3.js"></script>
 </html>
