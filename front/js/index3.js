@@ -1,27 +1,13 @@
     let random=[]
-<<<<<<< Updated upstream
-=======
     let puntaje=0
     let jugador1=0
     let jugador2=0
->>>>>>> Stashed changes
     async function imgJugador1() {
         let response = await fetch(`http://localhost:4000/JugadoresImg`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             },
-<<<<<<< Updated upstream
-        })
-        let jugadores = await response.json()
-        random = getRandomVector(jugadores);
-        console.log(random);
-
-        document.getElementById("imgJugador1").src = jugadores[random[0]].img
-        document.getElementById("imgJugador2").src = jugadores[random[1]].img
-        document.getElementById("goles").innerText = jugadores[random[0]].goles
-    }
-=======
         });
         let jugadores = await response.json();
         
@@ -36,7 +22,6 @@
         jugador2 = jugadores[random[1]].goles;
     }
     
->>>>>>> Stashed changes
     imgJugador1()
 
     function getRandomInt(max) {
@@ -44,17 +29,6 @@
     }
 
     function getRandomVector(jugadores) {
-<<<<<<< Updated upstream
-        random = [getRandomInt(jugadores.length) + 1]
-        let random2 = getRandomInt(jugadores.length) + 1
-
-        while(random[0] == random2) {
-            random2 = getRandomInt(jugadores.length) + 1
-        }
-        random.push(random2);
-        return random
-    }
-=======
         let index1 = getRandomInt(jugadores.length);
         let index2;
         do {
@@ -63,7 +37,6 @@
         return [index1, index2];
     }
     
->>>>>>> Stashed changes
 
     async function funcionMas() {
         let response = await fetch(`http://localhost:4000/JugadoresImg`, {
@@ -73,16 +46,12 @@
             },
         })
         let jugadores = await response.json()
-<<<<<<< Updated upstream
-        console.log(jugadores[random[0]].goles)
-=======
         if(jugador1>jugador2 || jugador1==jugador2){
             document.getElementById("goles2").innerText = jugadores[random[1]].goles
             nuevoNivel()
         }else{
             window.location.href = "../html/defeat.html"
         }
->>>>>>> Stashed changes
         
     }
 
@@ -94,10 +63,6 @@
             },
         })
         let jugadores = await response.json()
-<<<<<<< Updated upstream
-        let random = getRandomVector(jugadores);
-    }
-=======
         if(jugador1<jugador2 || jugador1==jugador2){
             document.getElementById("goles2").innerText = jugadores[random[1]].goles
             nuevoNivel()
@@ -135,4 +100,3 @@
         jugador2 = jugadores[random[1]].goles;
     }
     
->>>>>>> Stashed changes
