@@ -92,6 +92,18 @@ app.post('/Jugadores', async function(req,res) {
 
 })
 
+app.get('/Usuarios', async function(req,res){
+
+    let respuesta;
+    if (req.query.id != undefined) {
+        respuesta = await realizarQuery(`SELECT record FROM Usuarios WHERE id=${req.query.id}`)
+    } else {
+        respuesta = await realizarQuery("SELECT record FROM Usuarios");
+    }    
+    res.send(respuesta);
+})
+
+
 //Pongo el servidor a escuchar
 app.listen(port, function(){
     console.log(`Server running in http://localhost:${port}`);
