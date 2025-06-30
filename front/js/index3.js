@@ -85,16 +85,18 @@ async function nuevoNivel() {
     let jugadores = await response.json();
     puntaje += 1;
 
+    let prevJugador1 = random[0];
+
     random[0] = random[1];
 
-    let index2;
-    do {
+    let index2 = getRandomInt(jugadores.length);
+
+    while (index2 === random[0] || index2 === prevJugador1) {
         index2 = getRandomInt(jugadores.length);
-    } while (index2 === random[0]);
+    }
 
     random[1] = index2;
 
-    // Actualizamos el DOM
     document.getElementById("imgJugador1").src = jugadores[random[0]].img;
     document.getElementById("imgJugador2").src = jugadores[random[1]].img;
     document.getElementById("jugador1").innerText = jugadores[random[0]].nombre;
