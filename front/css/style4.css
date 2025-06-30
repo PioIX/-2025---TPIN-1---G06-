@@ -1,127 +1,117 @@
-/*
- * Archivo de Estilos para la Página de Derrota (style_defeat.css)
- * Diseño: Oscuro, moderno y con elementos visuales de derrota.
- */
-
 /* ====================
    1. Estilos Globales y Reseteo
    ==================== */
 html, body {
-    height: 100%; /* Asegura que html y body ocupen todo el viewport */
+    height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Previene el scrollbar */
+    overflow: hidden;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Usamos la fuente Montserrat */
-    background: linear-gradient(to bottom, #1a2a4a, #0d1a33); /* Gradiente azul oscuro para el fondo */
-    color: #e0e0e0; /* Texto principal */
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom, #1a2a4a, #0d1a33);
+    color: #e0e0e0;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Asegura que el body tenga al menos el alto del viewport */
-    box-sizing: border-box; /* Incluye padding y border en el tamaño total del elemento */
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 /* ====================
    2. Contenedor Principal
    ==================== */
 .container {
-    width: 90%; /* Ocupa el 90% del ancho disponible */
-    max-width: 550px; /* Ancho máximo para la caja de derrota */
-    padding: 30px;
-    box-sizing: border-box; /* Incluye padding en el ancho/alto */
-    text-align: center; /* Centra el texto */
-
-    background-color: rgba(0, 0, 0, 0.2); /* Fondo semi-transparente oscuro */
-    border-radius: 15px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); /* Sombra suave */
-    backdrop-filter: blur(5px); /* Efecto de desenfoque */
-    -webkit-backdrop-filter: blur(5px); /* Soporte para Safari */
+    width: 90%;
+    max-width: 400px; /* Antes: 550px */
+    padding: 20px;     /* Antes: 30px */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 /* ====================
    3. Encabezado (Header)
    ==================== */
 header {
-    margin-bottom: 40px; /* Espacio debajo del encabezado */
+    margin-bottom: 25px; /* Antes: 40px */
 }
 
 header h1 {
-    font-size: 2.5em;
+    font-size: 1.8em; /* Antes: 2.5em */
     font-weight: 700;
-    margin-bottom: 15px; /* Espacio debajo del título */
+    margin-bottom: 10px; /* Antes: 15px */
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Sombra sutil para el título */
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
 }
 
 .header-line {
-    border: none;
-    height: 2px;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff, rgba(255, 255, 255, 0)); /* Línea con gradiente blanco */
-    width: 80%; /* Ancho de la línea */
-    margin: 0 auto 30px auto; /* Centra y espacia la línea */
+    height: 1px; /* Antes: 2px */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff, rgba(255, 255, 255, 0));
+    width: 75%;
+    margin: 0 auto 20px auto; /* Antes: 30px */
 }
 
 /* ====================
    4. Caja de Derrota (main.defeat-box)
    ==================== */
-
 .defeat-title {
-    font-size: 3.5em; /* Título grande de derrota */
+    font-size: 2.4em; /* Antes: 3.5em */
     font-weight: 700;
-    color: #e74c3c; /* Rojo de derrota */
-    margin-bottom: 30px;
-    text-shadow: 0 0 15px rgba(231, 76, 60, 0.6); /* Brillo rojo */
-    animation: pulseRed 1.5s infinite alternate; /* Animación de pulsación */
+    color: #e74c3c;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+    animation: pulseRed 1.5s infinite alternate;
 }
 
-/* Keyframes para la animación de pulsación */
 @keyframes pulseRed {
     0% {
         transform: scale(1);
         opacity: 1;
     }
     100% {
-        transform: scale(1.05);
-        opacity: 0.8;
+        transform: scale(1.03);
+        opacity: 0.85;
     }
 }
 
 .defeat-image {
-    width: 250px; /* Tamaño fijo para la imagen */
-    height: 250px; /* Mismo alto para hacerla un círculo perfecto */
-    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-    margin-bottom: 30px;
+    width: 180px; /* Antes: 250px */
+    height: 180px;
+    object-fit: cover;
+    margin-bottom: 20px;
 
-    border-radius: 50%; /* ¡Hace la imagen un círculo! */
-    border: 8px solid #e74c3c; /* Borde rojo para el "neón" de derrota */
-    box-shadow: 0 0 25px rgba(231, 76, 60, 0.8), /* Brillo rojo más intenso */
-                0 0 40px rgba(231, 76, 60, 0.5); /* Segundo brillo para efecto más neón */
+    border-radius: 50%;
+    border: 6px solid #e74c3c;
+    box-shadow: 0 0 18px rgba(231, 76, 60, 0.7),
+                0 0 30px rgba(231, 76, 60, 0.4);
 }
 
 .defeat-info {
-    font-size: 1.5em;
-    margin-bottom: 35px;
-    color: #c0c0c0; /* Texto gris suave */
+    font-size: 1.1em; /* Antes: 1.5em */
+    margin-bottom: 25px; /* Antes: 35px */
+    color: #c0c0c0;
 }
 
 .defeat-info p {
-    margin: 10px 0; /* Espacio entre los párrafos de info */
+    margin: 6px 0; /* Antes: 10px */
 }
 
 .defeat-info strong {
-    color: #ffffff; /* Texto en negrita más blanco */
-    margin-right: 10px;
+    color: #ffffff;
+    margin-right: 6px;
 }
 
 .defeat-info span {
     font-weight: bold;
-    color: #007bff; /* Color azul para los números */
-    text-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+    color: #007bff;
+    text-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
 }
 
 /* ====================
@@ -129,25 +119,24 @@ header h1 {
    ==================== */
 .btn-defeat {
     width: 100%;
-    max-width: 300px; /* Ancho máximo para el botón */
-    padding: 15px 30px;
-    margin-top: 20px;
+    max-width: 250px; /* Antes: 300px */
+    padding: 10px 20px; /* Antes: 15px 30px */
+    margin-top: 15px;
     border: none;
-    border-radius: 50px; /* Botón bien redondeado */
+    border-radius: 40px;
     cursor: pointer;
 
-    background: linear-gradient(45deg, #007bff, #0056b3); /* Gradiente azul para "Intentar de nuevo" */
+    background: linear-gradient(45deg, #007bff, #0056b3);
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1.2em; /* Antes: 1.5em */
     font-weight: bold;
-    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4); /* Sombra azul */
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .btn-defeat:hover {
-    background: linear-gradient(45deg, #0056b3, #003d80); /* Azul más oscuro al pasar el mouse */
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 12px 25px rgba(0, 123, 255, 0.6);
+    background: linear-gradient(45deg, #0056b3, #003d80);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.5);
 }
-
