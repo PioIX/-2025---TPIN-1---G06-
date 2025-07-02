@@ -1,14 +1,23 @@
+/* ----------------------------- GLOBAL ----------------------------- */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #1a2a4a, #0d1a33);
+    background: linear-gradient(270deg, #1a2a4a, #0d1a33, #1a2a4a);
+    background-size: 600% 600%;
+    animation: fondoMover 25s ease infinite;
     color: #e0e0e0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     overflow-y: auto;
     box-sizing: border-box;
+}
+
+@keyframes fondoMover {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 body {
@@ -17,10 +26,11 @@ body {
     min-height: 100vh;
 }
 
+/* ----------------------------- CONTENEDOR ----------------------------- */
 .contenedor {
     max-width: 1400px;
     width: 100%;
-    margin: auto; /* Esto centra vertical y horizontalmente */
+    margin: auto;
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
@@ -31,8 +41,7 @@ body {
     gap: 10px;
 }
 
-
-/* Encabezado */
+/* ----------------------------- ENCABEZADO ----------------------------- */
 .encabezado {
     display: flex;
     justify-content: space-between;
@@ -48,8 +57,14 @@ body {
     margin: 0;
     flex-grow: 1;
     color: #ffffff;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     letter-spacing: 2px;
+    animation: entradaTitulo 1s ease-out;
+}
+
+@keyframes entradaTitulo {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 .icono-ajustes {
@@ -65,15 +80,16 @@ body {
     transform: rotate(180deg) scale(1.15);
 }
 
-/* Divisor */
+/* ----------------------------- DIVISOR ----------------------------- */
 .divisor {
     border-bottom: 3px solid #444;
     margin: 0 0 20px 0;
     width: 100%;
     flex-shrink: 0;
+    opacity: 0.7;
 }
 
-/* Sección de jugadores */
+/* ----------------------------- SECCIÓN JUGADORES ----------------------------- */
 .seccion-jugadores {
     display: flex;
     justify-content: center;
@@ -85,7 +101,6 @@ body {
     position: relative;
 }
 
-/* Línea vertical entre jugadores */
 .seccion-jugadores::before {
     content: '';
     position: absolute;
@@ -95,9 +110,10 @@ body {
     width: 2px;
     background-color: #555;
     z-index: 1;
+    opacity: 0.4;
 }
 
-/* Tarjeta jugador */
+/* ----------------------------- TARJETA JUGADOR ----------------------------- */
 .tarjeta-jugador {
     display: flex;
     flex-direction: column;
@@ -108,65 +124,94 @@ body {
     padding: 15px;
     background-color: #15203a;
     border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: tarjetaGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes tarjetaGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.1);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(0, 123, 255, 0.3);
+    }
 }
 
 .tarjeta-jugador:hover {
-    transform: none;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-4px);
 }
 
+/* Imagen jugador */
 .tarjeta-jugador img {
     width: 160px;
     height: 160px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 8px solid #007bff;
-    box-shadow: 0 0 15px #007bff;
+    border: 6px solid #007bff;
+    box-shadow: 0 0 10px rgba(0,123,255,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tarjeta-jugador img:hover {
-    border-color: #007bff;
-    box-shadow: 0 0 15px #007bff;
-    transform: none;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,123,255,0.7);
 }
 
 .tarjeta-jugador h2 {
     font-size: 2em;
     margin: 0 0 10px 0;
     color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-.tarjeta-jugador .puntaje,
-.tarjeta-jugador .puntaje2 {
+/* Puntaje */
+.puntaje,
+.puntaje2 {
     font-size: 4em;
     font-weight: bold;
     margin: 0;
-    color: #007bff;
-    text-shadow: 0 0 20px #007bff;
+    color: #00c2ff;
+    text-shadow: 0 0 12px #00c2ff;
+    transition: transform 0.3s ease;
 }
 
-/* Texto VS */
+/* Efecto al subir puntaje */
+.puntaje-animado {
+    animation: bounceUp 0.6s ease;
+}
+
+@keyframes bounceUp {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.25); }
+    60% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* ----------------------------- TEXTO VS ----------------------------- */
 .texto-vs {
-    font-size: 2.2em;
+    font-size: 2.4em;
     font-weight: bold;
     color: #ffffff;
     position: relative;
     z-index: 3;
     background: #0c1527;
-    padding: 0 6px;
-    border-radius: 15%;
-    text-shadow: none;
-    margin: 0;
-    box-shadow: none;
+    padding: 0 10px;
+    border-radius: 20%;
+    animation: vsPulse 2s infinite ease-in-out;
 }
 
-/* Botones */
+@keyframes vsPulse {
+    0% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.9; }
+}
+
+/* ----------------------------- BOTONES ----------------------------- */
 .seccion-botones {
     display: flex;
     flex-direction: column;
@@ -184,7 +229,6 @@ body {
     cursor: pointer;
     margin: 6px 0;
     width: 260px;
-    box-sizing: border-box;
     border: none;
     color: #fff;
     transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
@@ -193,172 +237,183 @@ body {
 
 .boton.mas {
     background: linear-gradient(45deg, #4CAF50, #66BB6A);
-    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.5);
+    box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
 }
 
 .boton.mas:hover {
     background: linear-gradient(45deg, #66BB6A, #81C784);
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(76, 175, 80, 0.8);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(76, 175, 80, 0.6);
 }
 
 .boton.menos {
     background: linear-gradient(45deg, #F44336, #EF5350);
-    box-shadow: 0 8px 20px rgba(244, 67, 54, 0.5);
+    box-shadow: 0 6px 12px rgba(244, 67, 54, 0.4);
 }
 
 .boton.menos:hover {
     background: linear-gradient(45deg, #EF5350, #FF7043);
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(244, 67, 54, 0.8);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(244, 67, 54, 0.6);
 }
 
-/* Estadísticas */
-.estadisticas-juego {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    font-size: 1.3em;
-    color: #e0e0e0;
-    font-weight: 600;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-    width: 100%;
-    flex-shrink: 0;
+.boton.reiniciar {
+    background: linear-gradient(45deg, #2196F3, #42A5F5);
+    box-shadow: 0 6px 12px rgba(33, 150, 243, 0.4);
 }
 
+.boton.reiniciar:hover {
+    background: linear-gradient(45deg, #42A5F5, #64B5F6);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(33, 150, 243, 0.6);
+}
+
+/* ----------------------------- EFECTO ESTALLIDO PUNTAJE ----------------------------- */
+/* ----------------------------- EFECTO VICTORIA ----------------------------- */
+/* Confetti canvas full screen y encima de todo */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Efecto de victoria */
+#efecto-punto {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 6rem;
+    font-weight: 900;
+    color: #00fff0;
+    text-shadow:
+        0 0 20px #00fff0,
+        0 0 40px #33ffff,
+        0 0 60px #66ffff,
+        0 0 80px #99ffff;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    animation-fill-mode: forwards;
+    z-index: 101;
+}
+
+/* Animación para que +1 explote y desaparezca */
+@keyframes animacion-punto {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0);
+        filter: drop-shadow(0 0 10px #00fff0);
+    }
+    40% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.5) translateY(-30px);
+        filter: drop-shadow(0 0 25px #33ffff);
+    }
+    70% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.8) translateY(-60px);
+        filter: drop-shadow(0 0 35px #66ffff);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2) translateY(-80px);
+        filter: drop-shadow(0 0 0 transparent);
+    }
+}
+
+/* ----------------------------- EFECTO DERROTA ----------------------------- */
+/* Fondo gris y partículas cayendo */
+#efecto-derrota {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-size: 6rem;
+    font-weight: 900;
+    color: #ff4d4d;
+    text-shadow:
+        0 0 20px #ff4d4d,
+        0 0 40px #ff8080,
+        0 0 60px #ffb3b3,
+        0 0 80px #ffcccc;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    animation-fill-mode: forwards;
+    z-index: 101;
+}
+
+/* Animación de caída de derrota */
+@keyframes animacion-caida {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0.5;
+        transform: translate(-50%, 100vh) scale(1.2);
+    }
+}
+
+/* Animación de partículas de derrota */
+@keyframes particulas-caida {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, 50vh) scale(0);
+    }
+}
+
+/* Animación más suave, elegante y dinámica para los textos "RÉCORD" y "PUNTAJE" */
 .estadisticas-juego span {
-    margin: 0 15px;
-    letter-spacing: 1px;
+    display: inline-block;
+    opacity: 0;
+    font-family: 'Poppins', sans-serif; /* Fuente moderna */
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px #fff, 0 0 15px #00c2ff, 0 0 30px #00c2ff; /* Efecto suave de resplandor */
+    transform: translateY(-50px) scale(0.8);
+    animation: entradaSuave 1.2s ease-out forwards, resplandorSuave 1.5s ease-out infinite alternate;
 }
 
-/* Responsive para pantallas pequeñas */
-@media (max-width: 767px) {
-    .encabezado {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
+.estadisticas-juego span:nth-child(2) {
+    animation-delay: 0.3s; /* Retrasar un poco la animación del segundo texto */
+}
 
-    .encabezado h1 {
-        font-size: 2em !important;
-        flex-grow: unset;
-        width: 100%;
-        text-align: center;
+@keyframes entradaSuave {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.8);
     }
-
-    .icono-ajustes {
-        font-size: 2em !important;
-        margin-left: 0;
+    60% {
+        opacity: 0.7;
+        transform: translateY(20px) scale(1.1);
     }
-
-    .seccion-jugadores {
-        flex-direction: column !important;
-        gap: 20px !important;
-        position: static !important;
-    }
-
-    .seccion-jugadores::before {
-        display: none !important; /* Oculta línea vertical en móviles */
-    }
-
-    .tarjeta-jugador {
-        width: 90% !important;
-        max-width: 100% !important;
-        margin: 0 auto !important;
-    }
-
-    .tarjeta-jugador img {
-        width: 120px !important;
-        height: 120px !important;
-    }
-
-    .tarjeta-jugador h2 {
-        font-size: 1.5em !important;
-    }
-
-    .tarjeta-jugador .puntaje,
-    .tarjeta-jugador .puntaje2 {
-        font-size: 3em !important;
-    }
-
-    .texto-vs {
-        font-size: 1.5em !important;
-        margin: 10px 0 !important;
-    }
-
-    .seccion-botones {
-        width: 100% !important;
-    }
-
-    .boton {
-        width: 90% !important;
-        font-size: 1.2em !important;
-        padding: 10px 20px !important;
-    }
-
-    .estadisticas-juego {
-        flex-direction: column !important;
-        font-size: 1.1em !important;
-        gap: 8px !important;
-    }
-
-    .estadisticas-juego span {
-        margin: 5px 0 !important;
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
-/* Responsive para tablets y pantallas medianas */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .encabezado h1 {
-        font-size: 2.5em;
+@keyframes resplandorSuave {
+    0% {
+        opacity: 0.7;
+        text-shadow: 0 0 8px #fff, 0 0 15px #00c2ff, 0 0 30px #00c2ff;
     }
-
-    .icono-ajustes {
-        font-size: 2em;
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 20px #fff, 0 0 40px #00c2ff, 0 0 60px #00c2ff;
     }
-
-    .seccion-jugadores {
-        gap: 30px;
-        flex-wrap: nowrap;
-        flex-direction: row;
-    }
-
-    .seccion-jugadores::before {
-        display: block;
-    }
-
-    .tarjeta-jugador {
-        width: 48%;
-        max-width: 450px;
-    }
-
-    .tarjeta-jugador img {
-        width: 140px;
-        height: 140px;
-    }
-
-    .tarjeta-jugador h2 {
-        font-size: 1.8em;
-    }
-
-    .tarjeta-jugador .puntaje,
-    .tarjeta-jugador .puntaje2 {
-        font-size: 3.5em;
-    }
-
-    .texto-vs {
-        font-size: 1.8em;
-        margin: 0 12px;
-    }
-
-    .boton {
-        width: 260px;
-        font-size: 1.4em;
-        padding: 12px 28px;
-    }
-
-    .estadisticas-juego {
-        font-size: 1.2em;
-        gap: 12px;
+    100% {
+        opacity: 0.8;
+        text-shadow: 0 0 10px #fff, 0 0 20px #00c2ff, 0 0 30px #00c2ff;
     }
 }
