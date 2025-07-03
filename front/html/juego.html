@@ -2,26 +2,32 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Goal Clash</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css" />
 </head>
 
 <body>
+    <!-- Música en loop, inicialmente muteada y pausada -->
+    <audio id="musicFondo" src="../audios/music_fondo.mp3" loop muted></audio>
+
     <div class="contenedor">
         <div class="encabezado">
             <h1>Goal Clash</h1>
             <a class="icono-ajustes" href="login.html" style="text-decoration: none;">&#x21BB;</a>
         </div>
+
         <div class="divisor"></div>
         <div class="seccion-jugadores">
-            <div class="tarjeta-jugador"> <img src="" alt="jugador1" id="imgJugador1">
+            <div class="tarjeta-jugador">
+                <img src="" alt="jugador1" id="imgJugador1" />
                 <h2 id="jugador1"></h2>
                 <p class="puntaje" id="goles"></p>
             </div>
             <div class="texto-vs">VS</div>
-            <div class="tarjeta-jugador"> <img src="" alt="jugador2" id="imgJugador2">
+            <div class="tarjeta-jugador">
+                <img src="" alt="jugador2" id="imgJugador2" />
                 <h2 id="jugador2"></h2>
                 <p class="puntaje2" id="goles2">???</p>
             </div>
@@ -30,21 +36,28 @@
         <div class="seccion-botones">
             <button class="boton mas" onclick="funcionMas()">Más</button>
             <button class="boton menos" onclick="funcionMenos()">Menos</button>
-          </div>
-          
+        </div>
 
-        <div class="estadisticas-juego"> <span>Rercord:<span id="record"></span> </span>
+        <div class="estadisticas-juego">
+            <span>Record:<span id="record"></span></span>
             <span>Puntaje:<span id="puntaje"></span></span>
         </div>
         <div id="efecto-punto-container">
             <div id="efecto-punto">+1</div>
         </div>
-    
-        <canvas id="confetti-canvas"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-    
+        <canvas id="confetti-canvas"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
     </div>
+
+    <!-- Botón para activar/mutar música, abajo del todo -->
+    <div style="position: fixed; bottom: 10px; right: 10px; z-index: 1000;">
+        <button id="btnMute" style="padding: 10px 15px; font-size: 18px;">🎵 Activar Música</button>
+    </div>
+
+    <script src="../js/index3.js"></script>
+    <script src="../js/musica.js"></script>
 </body>
-<script src="../js/index3.js"></script>
+
 </html>

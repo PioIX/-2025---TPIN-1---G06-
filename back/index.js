@@ -57,12 +57,19 @@ app.post('/usuarios', async function(req, res) {
 
     if (respuesta.length > 0) {
         res.send({res: respuesta[0].contraseña,
-                esAdmin: respuesta[0].es_admin
+                esAdmin: respuesta[0].es_admin,
         })
              
     }else {
         res.send({res: "Usuario no encontrado"});     
     }
+});
+
+
+app.post('/usuariosRecord', async function(req, res) {
+    console.log(req.body);
+    let respuesta = await realizarQuery(`SELECT record FROM Usuarios WHERE correo='${req.body.email}'`);
+    res.send({res: respuesta[0]});     
 });
 
 
