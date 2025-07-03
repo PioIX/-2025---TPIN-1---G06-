@@ -2,6 +2,19 @@ let random = []
 let puntaje = 0
 let jugador1 = 0
 let jugador2 = 0
+let email = localStorage.getItem("email");
+
+
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const sonidoVictoria = new Audio("../audios/win.mp3");
+sonidoVictoria.volume = 0.5;
+const sonidoDerrota = new Audio("../audios/boo.mp3");
+sonidoDerrota.volume = 0.5;
+
 
 async function imgJugador1() {
     let response = await fetch(`http://localhost:4000/JugadoresImg`, {
@@ -39,7 +52,6 @@ function getRandomVector(jugadores) {
     return [index1, index2];
 }
 
-// Efecto de victoria con confetti
 function lanzarConfeti() {
     confetti({
         particleCount: 250,
@@ -59,12 +71,14 @@ async function funcionMas() {
     let jugadores = await response.json();
 
     if (jugador1 > jugador2 || jugador1 === jugador2) {
-        // Activar el efecto de victoria
         document.getElementById("goles2").innerText = jugadores[random[1]].goles;
         nuevoNivel();
-        lanzarConfeti();  // Efecto visual de confetti
-        activarEfectoPunto();  // Efecto de "+1"
+        lanzarConfeti();
+        activarEfectoPunto();
+        sonidoVictoria.play();
     } else {
+        sonidoDerrota.play()
+        await delay(3000);
         window.location.href = "../html/defeat.html";
     }
 }
@@ -83,7 +97,10 @@ async function funcionMenos() {
         nuevoNivel();
         lanzarConfeti(); 
         activarEfectoPunto();
+        sonidoVictoria.play();
     } else {
+        sonidoDerrota.play()
+        await delay(2000);
         window.location.href = "../html/defeat.html";
     }
 }
@@ -123,7 +140,6 @@ async function nuevoNivel() {
     jugador2 = jugadores[random[1]].goles;
 }
 
-// Activar el efecto "+1"
 function activarEfectoPunto() {
     let efectoPunto = document.getElementById("efecto-punto");
     efectoPunto.style.opacity = 1;
@@ -136,4 +152,20 @@ function activarEfectoPunto() {
         efectoPunto.style.opacity = 0;
         efectoPunto.style.transform = 'translate(-50%, -50%) scale(0)';
     }, 1000);
+}
+
+async function usuariosRecord(email, puntaje) {
+    try {
+        const response = await fetch('http://localhost:4000/usuariosRecord', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, puntaje }),
+        });
+        const result = await response.json();
+        console.log(result.res);
+    } catch (error) {
+        console.error('Error al hacer la petición:', error);
+    }
 }

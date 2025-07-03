@@ -12,7 +12,7 @@ async function guardarUsuario(datos){
         let result = await response.json()
         console.log(result)
         if (result.validar){
-            window.location.href = "../html/juego.html";
+            window.location.href = "../html/login.html";
         }else{
             ui.showModal("Error",result.res)
         }
