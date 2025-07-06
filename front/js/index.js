@@ -9,7 +9,6 @@ async function ingresar(datosLogin) {
         });
         console.log(response)
         const result = await response.json();
-        localStorage.setItem("email", ui.getEmail());
         if (result.res == ui.getPassword()) {
             if (result.esAdmin == 1) {
                 userId = result.userId;
