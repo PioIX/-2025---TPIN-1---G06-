@@ -2,8 +2,6 @@ let random = []
 let puntaje = 0
 let jugador1 = 0
 let jugador2 = 0
-let email = localStorage.getItem("email");
-
 
 
 function delay(ms) {
@@ -12,8 +10,6 @@ function delay(ms) {
 
 const sonidoVictoria = new Audio("../audios/win.mp3");
 sonidoVictoria.volume = 0.5;
-const sonidoDerrota = new Audio("../audios/boo.mp3");
-sonidoDerrota.volume = 0.5;
 
 
 async function imgJugador1() {
@@ -54,7 +50,7 @@ function getRandomVector(jugadores) {
 
 function lanzarConfeti() {
     confetti({
-        particleCount: 250,
+        particleCount: 150,
         spread: 1000,
         origin: { x: 0.5, y: 0.5 },
         colors: ['#00fff0', '#00c2ff', '#33ffff', '#66ffff'],
@@ -77,8 +73,6 @@ async function funcionMas() {
         activarEfectoPunto();
         sonidoVictoria.play();
     } else {
-        sonidoDerrota.play()
-        await delay(3000);
         window.location.href = "../html/defeat.html";
     }
 }
@@ -99,8 +93,6 @@ async function funcionMenos() {
         activarEfectoPunto();
         sonidoVictoria.play();
     } else {
-        sonidoDerrota.play()
-        await delay(2000);
         window.location.href = "../html/defeat.html";
     }
 }
