@@ -58,6 +58,8 @@ app.post('/usuarios', async function(req, res) {
     if (respuesta.length > 0) {
         res.send({res: respuesta[0].contraseña,
                 esAdmin: respuesta[0].es_admin,
+                record:respuesta[0].record,
+                correo:respuesta[0].correo
         })
              
     }else {
@@ -66,7 +68,7 @@ app.post('/usuarios', async function(req, res) {
 });
 
 
-app.post('/usuariosRecord', async function(req, res) {
+app.post('/Record', async function(req, res) {
     console.log(req.body);
     let respuesta = await realizarQuery(`SELECT record FROM Usuarios WHERE correo='${req.body.email}'`);
     res.send({res: respuesta[0]});     
@@ -105,6 +107,29 @@ app.post('/Jugadores', async function(req,res) {
     }
 
 })
+
+app.get('/usuariosPuntaje', async function(req,res){
+    
+    let respuesta;
+    if (req.query.email != undefined) {
+        respuesta = await realizarQuery(`SELECT record FROM Usuarios WHERE correo=${req.query.email}`)
+    } else {
+        respuesta = { error: "no se encontro record" };
+    }    
+    res.send(respuesta);
+})
+
+
+app.put('/usuariosRecord', async function (req, res) {
+    try {
+        let respuesta = await realizarQuery(`UPDATE Usuarios SET record = ${req.body.puntaje} WHERE correo = '${req.body.correo}'`);
+        res.send(respuesta)
+
+    } catch (error) {
+        console.error("Error al actualizar el record:", error);
+        
+    }
+});
 
 //Pongo el servidor a escuchar
 app.listen(port, function(){
