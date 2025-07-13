@@ -10,6 +10,8 @@ async function ingresar(datosLogin) {
         console.log(response)
         const result = await response.json();
         if (result.res == ui.getPassword()) {
+            localStorage.setItem("record", result.record)
+            localStorage.setItem("email", result.correo)
             if (result.esAdmin == 1) {
                 userId = result.userId;
                 window.location.href = "../html/admin.html";
@@ -34,6 +36,7 @@ function crearLogin() {
     let datosLogin = {
         email: ui.getEmail(),
         contraseña: ui.getPassword()
+        
     }
     if (ui.getEmail() == "" || ui.getPassword() == "") {
         ui.showModal("Error", "Debes Rellenar todos los campos")

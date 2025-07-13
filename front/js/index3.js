@@ -2,10 +2,12 @@ let random = []
 let puntaje = 0
 let jugador1 = 0
 let jugador2 = 0
+let record = parseInt(localStorage.getItem("record"))
+let email = localStorage.getItem("email")
 
 
 function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 const sonidoVictoria = new Audio("../audios/win.mp3");
@@ -30,8 +32,8 @@ async function imgJugador1() {
     document.getElementById("puntaje").innerText = puntaje;
     jugador1 = jugadores[random[0]].goles;
     jugador2 = jugadores[random[1]].goles;
+    actualizarRecordSiEsMayor(puntaje)
 }
-
 imgJugador1()
 
 function getRandomInt(max) {
@@ -73,6 +75,8 @@ async function funcionMas() {
         activarEfectoPunto();
         sonidoVictoria.play();
     } else {
+        localStorage.setItem("record", record)
+        localStorage.setItem("puntaje", puntaje)
         window.location.href = "../html/defeat.html";
     }
 }
@@ -89,10 +93,13 @@ async function funcionMenos() {
     if (jugador1 < jugador2 || jugador1 === jugador2) {
         document.getElementById("goles2").innerText = jugadores[random[1]].goles;
         nuevoNivel();
-        lanzarConfeti(); 
-        activarEfectoPunto();
+        lanzarConfeti();
+
         sonidoVictoria.play();
+
     } else {
+        localStorage.setItem("record", record)
+        localStorage.setItem("puntaje", puntaje)
         window.location.href = "../html/defeat.html";
     }
 }
@@ -107,7 +114,7 @@ async function nuevoNivel() {
 
     let jugadores = await response.json();
     puntaje += 1;
-
+    actualizarRecordSiEsMayor();
     let prevJugador1 = random[0];
 
     random[0] = random[1];
@@ -137,27 +144,37 @@ function activarEfectoPunto() {
     efectoPunto.style.opacity = 1;
     efectoPunto.style.transform = 'translate(-50%, -50%) scale(1)';
     efectoPunto.innerText = `+1`;
-    
+
     efectoPunto.style.animation = 'animacion-punto 1s ease-out';
-    
+
     setTimeout(() => {
         efectoPunto.style.opacity = 0;
         efectoPunto.style.transform = 'translate(-50%, -50%) scale(0)';
     }, 1000);
 }
 
-async function usuariosRecord(email, puntaje) {
-    try {
-        const response = await fetch('http://localhost:4000/usuariosRecord', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, puntaje }),
-        });
-        const result = await response.json();
-        console.log(result.res);
-    } catch (error) {
-        console.error('Error al hacer la petición:', error);
+async function actualizarRecordSiEsMayor() {
+    document.getElementById("record").innerText = record;
+    if (puntaje > record) {
+        document.getElementById("record").innerText = puntaje;
+        try {
+            let correo = email
+            response = await fetch(`http://localhost:4000/usuariosRecord`, {
+                method: "PUT", //GET, POST, PUT o DELETE
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ puntaje: puntaje, correo: correo })
+            })
+            console.log("El Record se ha actualizado correctamente")
+            record = puntaje;
+            localStorage.setItem("record", record);
+
+        } catch (error) {
+            ui.showModal("Error", "No se ha podida actualizar el record")
+            console.log(error)
+        }
+
     }
+
 }
