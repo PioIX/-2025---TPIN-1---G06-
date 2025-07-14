@@ -11,7 +11,7 @@ function delay(ms) {
 }
 
 const sonidoVictoria = new Audio("../audios/win.mp3");
-sonidoVictoria.volume = 0.5;
+sonidoVictoria.volume = 1;
 
 
 async function imgJugador1() {
@@ -94,7 +94,7 @@ async function funcionMenos() {
         document.getElementById("goles2").innerText = jugadores[random[1]].goles;
         nuevoNivel();
         lanzarConfeti();
-
+        activarEfectoPunto();
         sonidoVictoria.play();
 
     } else {
